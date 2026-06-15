@@ -1,5 +1,15 @@
 import { useEffect, useState } from "react";
 import BookCard from "../Book/BookCard";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import 'swiper/css/navigation';
+
+// import required modules
+import { Navigation, Pagination } from "swiper/modules";
 const categorys = [
   "Choose a genre",
   "Business",
@@ -20,14 +30,14 @@ const TopSeller = () => {
     selectedCategory === "Choose a genre"
       ? books
       : books.filter(
-          (book) => book.category === selectedCategory.toLowerCase()
+          (book) => book.category === selectedCategory.toLowerCase(),
         );
   console.log(filteredBook);
   return (
     <div className="py-10">
       <h2 className="text-3xl font-semibold mb-6">Top Sellers</h2>
       {/* category filters go here */}
-      <div className="mt-8 flex items-center">
+      <div className="my-8 flex items-center">
         <select
           onChange={(e) => setSelectedCategory(e.target.value)}
           name="category"
@@ -43,10 +53,40 @@ const TopSeller = () => {
           })}
         </select>
       </div>
-
-      {filteredBook.map((book, index) => {
-        return <BookCard key={index} book={book} />;
-      })}
+      <Swiper
+        slidesPerView={1}
+        spaceBetween={30}
+        navigation={true}
+        breakpoints={{
+          640: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 2,
+            spaceBetween: 50,
+          },
+          1180: {
+            slidesPerView: 3,
+            spaceBetween: 50,
+          },
+        }}
+        modules={[Pagination, Navigation]}
+        className="mySwiper"
+      >
+        {filteredBook.length > 0 &&
+          filteredBook.map((book, index) => {
+            return (
+              <SwiperSlide key={index}>
+                <BookCard book={book} />
+              </SwiperSlide>
+            );
+          })}
+      </Swiper>
     </div>
   );
 };
