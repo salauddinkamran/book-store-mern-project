@@ -1,8 +1,13 @@
 import { FiShoppingCart } from "react-icons/fi";
 import { getImgUrl } from "../../utils/getImgUrl";
 import { Link } from "react-router";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/features/cart/cartSlice";
 const BookCard = ({ book }) => {
-  console.log(book);
+  const dispatch = useDispatch();
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+  };
   return (
     <div>
       <div className=" rounded-lg transition-shadow duration-300">
@@ -34,7 +39,10 @@ const BookCard = ({ book }) => {
                 ${book?.oldPrice}
               </span>
             </p>
-            <button className="bg-primary py-2 rounded-md text-white px-6 space-x-1 flex items-center gap-1 ">
+            <button
+              onClick={() => handleAddToCart(book)}
+              className="bg-primary py-2 rounded-md text-white px-6 space-x-1 flex items-center gap-1 "
+            >
               <FiShoppingCart className="" />
               <span>Add to Cart</span>
             </button>

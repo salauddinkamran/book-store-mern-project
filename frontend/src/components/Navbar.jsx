@@ -1,4 +1,4 @@
-import { href, Link,  } from "react-router";
+import { Link } from "react-router";
 import { HiMiniBars3CenterLeft } from "react-icons/hi2";
 import { IoSearchOutline } from "react-icons/io5";
 import { HiOutlineUser } from "react-icons/hi";
@@ -6,6 +6,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import avaterImg from "../assets/avatar.png";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const navigation = [
@@ -18,7 +19,8 @@ const Navbar = () => {
     { name: "Check Out", href: "/checkout" },
   ];
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  console.log(isDropdownOpen);
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  console.log(cartItems);
   const currentUser = false;
   return (
     <header className="max-w-screen-2xl mx-auto px-4 py-6">
@@ -54,7 +56,10 @@ const Navbar = () => {
                   <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md z-40">
                     <ul className="py-2">
                       {navigation.map((item) => (
-                        <li key={item.name} onClick={() => setIsDropdownOpen(false)}>
+                        <li
+                          key={item.name}
+                          onClick={() => setIsDropdownOpen(false)}
+                        >
                           <Link
                             to={item.name}
                             className="block px-4 py-2 text-sm hover:bg-gray-100"
@@ -82,7 +87,13 @@ const Navbar = () => {
             className="bg-primary p-1 sm:px-6 px-2 flex items-center rounded-md"
           >
             <MdOutlineShoppingCart />
-            <span>0</span>
+            {cartItems.length > 0 ? (
+              <span className="text-sm font-semibold sm:ml-1">
+                {cartItems.length}
+              </span>
+            ) : (
+              <span className="text-sm font-semibold sm:ml-1">0</span>
+            )}
           </Link>
         </div>
       </nav>
