@@ -14,7 +14,7 @@ app.use(
   cors({
     origin: ["http://localhost:5173"],
     credentials: true,
-  })
+  }),
 );
 
 // routes
@@ -29,7 +29,10 @@ async function main() {
 }
 
 main()
-  .then(() => console.log("MongoDB connect successfully!"))
+  .then(() => {
+    (console.log("MongoDB connect successfully!"),
+      console.log("Database:", mongoose.connection.name));
+  })
   .catch((err) => console.log(err));
 
 app.listen(port, () => {
