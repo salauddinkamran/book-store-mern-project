@@ -38,4 +38,52 @@ const getSingleBook = async (req, res) => {
   }
 };
 
-module.exports = { postABook, getAllBooks, getSingleBook };
+// update book data
+
+const UpdateBook = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updateBook = await Book.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+    if (!updateBook) {
+      res.status(404).send({ message: "Book is not Found!" });
+    }
+    res.status(200).send({
+      message: "Book updated successfully",
+      book: updateBook,
+    });
+  } catch (error) {
+    console.log("Error updating a book", error);
+    res.status(500).send({ message: "Failed to update a book" });
+  }
+};
+
+// Delete book data
+
+const deleteABook = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedBook = await Book.findByIdAndDelete(id);
+    if (!deletedBook) {
+      res.status(500).send({ message: "Book is not Found!" });
+    }
+    res.status(200).send({
+      message: "Book deleted successfully",
+      book: deletedBook,
+    });
+  } catch (error) {
+    console.log("Error deleting a book", error);
+    res.status(500).send({ message: "Failed to delete a book" });
+  }
+};
+
+module.exports = {
+  postABook,
+  getAllBooks,
+  getSingleBook,
+  UpdateBook,
+  deleteABook,
+};
+
+// ABCDEFGHIJKLMNOPQURSTUVWXYZ
