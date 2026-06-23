@@ -6,7 +6,7 @@ import { useAuth } from "../context/AuthContext";
 
 const Register = () => {
   const [message, setMessage] = useState("");
-  const {registerUser} = useAuth()
+  const { registerUser } = useAuth();
   const {
     register,
     handleSubmit,
@@ -19,10 +19,11 @@ const Register = () => {
   const onsubmit = async (data) => {
     console.log(data);
     try {
-      await registerUser(data.email, data.password)
-      alert("User registered successfully!")
+      await registerUser(data.email, data.password);
+      alert("User registered successfully!");
     } catch (error) {
-      setMessage("Please provider a valid email and password")
+      setMessage("Please provider a valid email and password");
+      console.log(error);
     }
   };
   const handleGoogleSignIn = () => {};
