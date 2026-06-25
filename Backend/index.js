@@ -19,6 +19,7 @@ app.use(
 
 // routes
 const bookRoutes = require("./src/books/book.route");
+const Order = require("./src/orders/order.model");
 app.use("/api/books", bookRoutes);
 
 async function main() {
