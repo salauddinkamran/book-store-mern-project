@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { useFetchBookByIdQuery } from "../../redux/features/cart/bookApi";
+import { useFetchBookByIdQuery } from "../../redux/features/books/bookApi";
 import { getImgUrl } from "../../utils/getImgUrl";
 import { FiShoppingCart } from "react-icons/fi";
 import { useDispatch } from "react-redux";

@@ -19,8 +19,9 @@ app.use(
 
 // routes
 const bookRoutes = require("./src/books/book.route");
-const Order = require("./src/orders/order.model");
+const orderRoutes = require("./src/orders/order.route");
 app.use("/api/books", bookRoutes);
+app.use("/api/orders", orderRoutes);
 
 async function main() {
   await mongoose.connect(process.env.DB_URL);
@@ -28,7 +29,6 @@ async function main() {
     res.send("Hello World!");
   });
 }
-
 
 main()
   .then(() => {
