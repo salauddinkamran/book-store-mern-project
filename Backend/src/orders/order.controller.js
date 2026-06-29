@@ -14,7 +14,10 @@ const createAOrder = async (req, res) => {
 const getOrderByEmail = async (req, res) => {
   try {
     const { email } = req.params;
+<<<<<<< HEAD
     // const orders = (await Order.find({ email })).sort({ createdAt: -1 });
+=======
+>>>>>>> 8791677db7482a057bd6c1ad9a4b62b40bfee746
     const orders = await Order.find({ email }).sort({ createdAt: -1 });
     if (!orders) {
       return res.status(404).json({ message: "Order not found" });
