@@ -1,7 +1,11 @@
+import Loading from "../components/Loading";
 import { useAuth } from "../context/AuthContext";
 import { Navigate } from "react-router";
 const PrivateRoute = ({ children }) => {
-  const { currentUser } = useAuth();
+  const { currentUser, loading } = useAuth();
+  if (loading) {
+    return <Loading></Loading>;
+  }
   if (currentUser) {
     return children;
   }

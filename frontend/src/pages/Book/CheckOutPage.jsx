@@ -31,7 +31,7 @@ const CheckOutPage = () => {
         ciry: data.city,
         country: data.country,
         state: data.state,
-        zipCode: data.zipCode,
+        zipcode: data.zipcode,
       },
       phone: data.phone,
       productIds: cartItems.map((item) => item?._id),

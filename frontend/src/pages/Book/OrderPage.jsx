@@ -19,6 +19,7 @@ const OrderPage = () => {
         <div>
           {orders.map((order, index) => (
             <div key={order._id} className="border-b mb-4 pb-4">
+              <p className="p-1 bg-secondary text-white w-10 rounded mb-1"># {index + 1}</p>
               <h2 className="font-bold">Order Id: {order?._id}</h2>
               <p className="text-gray-600">Name: {order.name}</p>
               <p className="text-gray-600">Email: {order.email}</p>
@@ -26,13 +27,13 @@ const OrderPage = () => {
               <p className="text-gray-600">Total Price: ${order.totalPrice}</p>
               <h3 className="font-semibold">Address:</h3>
               <p>
-                {order.address.city}, {order.address.state},{" "}
+                {order.address.ciry}, {order.address.state},{" "}
                 {order.address.country}, {order.address.zipcode}
               </p>
               <h3 className="font-semibold mt-2">Products Id:</h3>
               <ul>
                 {order.productIds.map((productId) => {
-                  <li key={productId}>{productId}</li>;
+                  return <li key={productId}>{productId}</li>;
                 })}
               </ul>
             </div>
