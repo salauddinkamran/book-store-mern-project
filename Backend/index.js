@@ -14,14 +14,17 @@ app.use(
   cors({
     origin: ["http://localhost:5173"],
     credentials: true,
-  }),
+  })
 );
 
 // routes
 const bookRoutes = require("./src/books/book.route");
 const orderRoutes = require("./src/orders/order.route");
+const userRoutes = require("./src/users/user.route");
+
 app.use("/api/books", bookRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/auth", userRoutes);
 
 async function main() {
   await mongoose.connect(process.env.DB_URL);
@@ -32,8 +35,8 @@ async function main() {
 
 main()
   .then(() => {
-    (console.log("MongoDB connect successfully!"),
-      console.log("Database:", mongoose.connection.name));
+    console.log("MongoDB connect successfully!"),
+      console.log("Database:", mongoose.connection.name);
   })
   .catch((err) => console.log(err));
 

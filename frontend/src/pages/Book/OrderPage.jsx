@@ -27,11 +27,7 @@ const OrderPage = () => {
               <p className="text-gray-600">Total Price: ${order.totalPrice}</p>
               <h3 className="font-semibold">Address:</h3>
               <p>
-<<<<<<< HEAD
-                {order.address.ciry}, {order.address.state},{" "}
-=======
                 {order.address.ciry}, {order.address.state},{" "},
->>>>>>> 8791677db7482a057bd6c1ad9a4b62b40bfee746
                 {order.address.country}, {order.address.zipcode}
               </p>
               <h3 className="font-semibold mt-2">Products Id:</h3>
