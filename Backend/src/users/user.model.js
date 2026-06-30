@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  passwoed: {
+  password: {
     type: String,
     required: true,
   },
@@ -19,8 +19,8 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre("save", async function (next) {
-  if (!this.isModified("passwoed")) return next();
-  this.passwoed = await bcrypt.hash(this.passwoed, 10);
+  if (!this.isModified("password")) return next();
+  this.password = await bcrypt.hash(this.password, 10);
   next();
 });
 const User = mongoose.model("User", userSchema);
