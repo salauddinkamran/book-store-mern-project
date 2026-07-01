@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import OrderPage from "../pages/Book/OrderPage";
 import AdminRoute from "./AdminRoute";
 import AdminLogin from "../components/AdminLogin";
+import DashboardLayout from "../pages/Dashboard/DashboardLayout";
 
 const router = createBrowserRouter([
   {
@@ -66,7 +67,7 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: (
       <AdminRoute>
-        <div>This is admin dashboard</div>
+        <DashboardLayout />
       </AdminRoute>
     ),
     children: [
